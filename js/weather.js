@@ -13,29 +13,37 @@ function FormatDay(date){
     return outday;
 }
 
-function parseAddress(address) {
+// function parseAddress(address) {
     // Make sure the address is a string.
-    if (typeof address !== "string") throw "Address is not a string.";
+    // if (typeof address !== "string") throw "Address is not a string.";
     // Trim the address.
-    address = address.trim();
+    //  address = address.trim();
     // Make an object to contain the data.
-    var returned = {};
+    // var returned = {};
     // Find the comma.
-    var comma = address.indexOf(',');
+    // var comma = address.indexOf(',');
     // Pull out the city.
-    returned.city = address.slice(0, comma);
+    // returned.city = address.slice(0, comma);
     // Get everything after the city.
-    var after = address.substring(comma + 2); // The string after the comma, +2 so that we skip the comma and the space.
-    console.log(after)
+    // var after = address.substring(comma + 2); // The string after the comma, +2 so that we skip the comma and the space.
     // Find the space.
-    var space = after.lastIndexOf(' ');
+    // var space = after.lastIndexOf(' ');
     // Pull out the state.
-    returned.state = after.slice(0, space);
+    // returned.state = after.slice(0, space);
     // Pull out the zip code.
-    returned.zip = after.substring(space + 1);
+  //  returned.zip = after.substring(space + 1);
     // Return the data.
-    console.log(returned)
-    return returned;
+    // return returned;
+// }
+
+function parseAddress(address) {
+    var returned = {};
+    // city = address.Trim.Split(","c)(0);
+    const [city, state] = address.split(',')
+    // var returned = address.Split(',');
+   returned.city = city
+   returned.state = state 
+   return returned 
 }
 
 $("#enter-city").keypress(function(event) { 
@@ -55,14 +63,13 @@ $("#enter-city").keypress(function(event) {
     var state = "ga"
     var city = $("#enter-city").val().trim();
     // Start over if no city entered
-    console.log(city)
     if (city === "") {
         return;
     }
     address = parseAddress(city);
-    console.log(address)
-//    getResponseWeather(city)
+    //getResponseWeather(city)
     getResponseWeather(address.city);
+    // getResponseWeather(address);
   });
 
   //Function to populate all the forecast data 
@@ -70,11 +77,14 @@ $("#enter-city").keypress(function(event) {
   function getResponseWeather(cityName){
 
     //Clear content of weather-today
-    $("#weather-today").empty();
-        //Section to get forecast  
-        var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" +cityName+ "&appid=" + key;
+    // $("#weather-today").empty();
+        //Section to get forecast
+        city=address.city;
+        state=address.state;
+        var queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}%2c${state}%2c&appid=${key}`;
+        // var queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}`;
            //Clear content of weather-today
-    $("#weather-today").empty();
+    // $("#weather-today").empty();
     $.ajax({
       url: queryURL,
       method: "GET",
@@ -87,8 +97,8 @@ $("#enter-city").keypress(function(event) {
         console.log(response)
         var CoordLon = response.coord.lon;
         var CoordLat = response.coord.lat;
-  //      var queryURL2 = "https://api.openweathermap.org/data/2.5/forecast/daily?q=" +cityName+ "&appid=" + key;
-         var queryURL2 = "https://api.openweathermap.org/data/2.5/onecall?appid="+ key+ "&lat=" + CoordLat +"&lon=" + CoordLon;
+     //   var queryURL2 = "https://api.openweathermap.org/data/2.5/onecall?appid="+ key+ "&lat=" + CoordLat +"&lon=" + CoordLon;
+         var queryURL2 = `https://api.openweathermap.org/data/2.5/onecall?appid=${key}&lat=${CoordLat}&lon=${CoordLon}`;
 //   console.log(queryURL2)
              $.ajax({
              url: queryURL2,
@@ -98,7 +108,6 @@ $("#enter-city").keypress(function(event) {
              $("#boxes").empty();
              for(var i=0, j=0; j<=7; i=i+1){
                  var read_date = respForecast.daily[i].dt;
-                 console.log(respForecast.daily[i].dt)
                  if(respForecast.daily[i].dt != respForecast.daily[i+1].dt){
                     var forecastDiv = $("<div>");
                     forecastDiv.attr("class","col-3 m-2 bg-primary")
@@ -122,7 +131,7 @@ $("#enter-city").keypress(function(event) {
                         imgtag.attr("src", "https://img.icons8.com/color/48/000000/rain.png")
                     }
 
-                    var ptempK = respForecast.daily[i].weather.temp;
+                    var ptempK = respForecast.daily[i].temp.day;
                     var convtemp = parseInt((ptempK)* 9/5 - 459);
                     var tempP = $("<p>").text("Tempeture: "+ convtemp + " °F");
                     var humidityP = $("<p>").text("Humidity: "+ respForecast.daily[i].humidity + " %");

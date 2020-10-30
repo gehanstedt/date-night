@@ -2,6 +2,15 @@ var citylist =$("#city-list");
 // var cities = [];
 var key = "10bed3fd22a7204ac32c558e968d28f2";
 
+var weekday = new Array(7);
+weekday[0] = "Sunday";
+weekday[1] = "Monday";
+weekday[2] = "Tuesday";
+weekday[3] = "Wednesday";
+weekday[4] = "Thursday";
+weekday[5] = "Friday";
+weekday[6] = "Saturday";
+
 //Format for day
 function FormatDay(date){
     var date = new Date();
@@ -106,7 +115,7 @@ $("#enter-city").keypress(function(event) {
          }).then(function(respForecast) { 
              console.log(respForecast)
              $("#boxes").empty();
-             for(var i=0, j=0; j<=7; i=i+1){
+             for(var i=0, j=0; j<=6; i=i+1){
                  var read_date = respForecast.daily[i].dt;
                  if(respForecast.daily[i].dt != respForecast.daily[i+1].dt){
                     var forecastDiv = $("<div>");
@@ -115,10 +124,12 @@ $("#enter-city").keypress(function(event) {
                     d.setUTCSeconds(read_date);
                     var date = d;
                     var month = date.getMonth()+1;
-                    var day = date.getDate();                 
+                    var day = date.getDate();  
+                    var dayOfWeek = date.getDay();
+                    console.log(weekday[dayOfWeek])               
                     var outday = (month<10 ? '0' : '') + month + '/' +
                     (day<10 ? '0' : '') + day + '/' +
-                    date.getFullYear();
+                    date.getFullYear() + ' ' + weekday[dayOfWeek];
                     var forecasth4 = $("<h6>").text(outday);
                     // add image to forecast block
                     var imgtag = $("<img>");
@@ -133,11 +144,15 @@ $("#enter-city").keypress(function(event) {
 
                     var ptempK = respForecast.daily[i].temp.day;
                     var convtemp = parseInt((ptempK)* 9/5 - 459);
-                    var tempP = $("<p>").text("Tempeture: "+ convtemp + " °F");
+                    var tempP = $("<p>").text("High temperature: "+ convtemp + " °F");
+                    var ptempeveK = respForecast.daily[i].temp.eve;
+                    var convtemp = parseInt((ptempeveK)* 9/5 - 459);
+                    var tempeveP = $("<p>").text("Evening temperature: "+ convtemp + " °F");
                     var humidityP = $("<p>").text("Humidity: "+ respForecast.daily[i].humidity + " %");
                     forecastDiv.append(forecasth4);
                     forecastDiv.append(imgtag);
                     forecastDiv.append(tempP);
+                    forecastDiv.append(tempeveP);
                     forecastDiv.append(humidityP);
                     $("#boxes").append(forecastDiv);
                     j++;

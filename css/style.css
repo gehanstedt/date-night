@@ -19,7 +19,7 @@ p {
   color: #26a69a;
 }
 
-.restaurantImage {
+.restaurantImage, .eventImage {
   height: 100px;
   display: block;
   margin-left: auto;
@@ -27,7 +27,7 @@ p {
   /* width: 50%; */
 }
 
-.restaurantBullets {
+.restaurantBullets, .eventBullets {
   margin-bottom: 0px;
   margin-top: 0px;
 }

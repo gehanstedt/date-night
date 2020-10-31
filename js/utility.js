@@ -1,4 +1,4 @@
-const debugOn = true;
+const debugOn = false;
 var citylist =$("#city-list");
 // var cities = [];
 
@@ -47,6 +47,7 @@ $(document).ready(function() {
         getActivity(address, "restaurant");
         getActivity(address, "relaxingActivities");
         getActivity(address, "adventureActivities");
+        getEvent(address);
     }
 
     // When enter key pressed

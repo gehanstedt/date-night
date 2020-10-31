@@ -63,7 +63,7 @@ $.ajax({
         $(htmlSection).empty ();
 
         // Grab the results from the API JSON return
-        console.log(data)
+        myDebug(data)
         var totalresults = data.total;
         // If our results are greater than 0, continue
         if (totalresults > 0){
@@ -87,13 +87,13 @@ $.ajax({
                 var rating = item.rating;
                 var review_count = item.review_count;
                 var url = item.url;
-                console.log(name)
-                console.log(address, city, state, zipcode)
-                console.log(price)
-                console.log(rating)
-                console.log(review_count)
-                console.log(imageURL)
-                console.log(url)
+                myDebug(name)
+                myDebug(address, city, state, zipcode)
+                myDebug(price)
+                myDebug(rating)
+                myDebug(review_count)
+                myDebug(imageURL)
+                myDebug(url)
 
                 divColumnElement = $("<div>");
                 divColumnElement.attr ("class", "col s12 m4");

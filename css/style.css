@@ -19,6 +19,19 @@ p {
   color: #26a69a;
 }
 
+.restaurantImage {
+  height: 100px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  /* width: 50%; */
+}
+
+.restaurantBullets {
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
 .parallax-container {
   min-height: 380px;
   line-height: 0;

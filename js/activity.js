@@ -74,8 +74,8 @@ $.ajax({
 
             // currently i < 3 this returns 3 objects change it if you want more or less
             for(var i=0; i < 3; i++){
-                //generate random number to choose 1 to 20
-                var x = Math.floor((Math.random() * 19) + 1);
+                //generate random number from 1 - number of businesses
+                var x = Math.floor((Math.random() * data.businesses.length-1) + 1);
                 item = data.businesses[x];
                 var name = item.name;
                 var address = item.location.address1;

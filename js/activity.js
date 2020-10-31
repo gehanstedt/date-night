@@ -1,18 +1,13 @@
 //create categ which will hold different categories to search on yelp
 //var categ = "restaurant"
 // var categ = "galleries,wineries,festivals,planetarium,aquariums,cabaret";
-// var categ = "escapegames,danceclubs,rockclimbing,axethrowing,hot_air_balloons,horsebackriding,hanggliding";
+ var categ = "escapegames,danceclubs,rockclimbing,axethrowing,hot_air_balloons,horsebackriding,hanggliding";
 
-var categ = [];
-var categ[0] = "restaurant"
-// var categ = "galleries,wineries,festivals,planetarium,aquariums,cabaret";
-// var categ = "escapegames,danceclubs,rockclimbing,axethrowing,hot_air_balloons,horsebackriding,hanggliding";
-
-cityst = "daytona beach,fl"
+cityst = "atlanta,ga"
 //  var myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?location=Atlanta,categories=restaurant";
 //  var myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/events?location=30041";
 // var myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?location=atlanta&categories=galleries,wineries";
-var myurl = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?location=${cityst}&categories=${categ[0]}`;
+var myurl = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?location=${cityst}&categories=${categ}`;
 console.log(myurl)
 
 // get items in the requested category 

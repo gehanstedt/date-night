@@ -86,6 +86,8 @@ function getResponseWeather(cityName){
                         imgtag.attr("src", "./img/clear-day.png")
                     }else if(skyconditions==="Rain"){
                         imgtag.attr("src", "./img/rain.png")
+                    }else if(skyconditions==="Snow"){
+                        imgtag.attr("src", "./img/snow.png")
                     }
 
                     var ptempK = respForecast.daily[i].temp.day;

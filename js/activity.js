@@ -88,7 +88,6 @@ $.ajax({
                 } else {
                     var price = "Unknown";
                 };
-                console.log(price)
                 var rating = item.rating;
                 var review_count = item.review_count;
                 var url = item.url;

@@ -23,12 +23,12 @@ function getActivity (cityObject, category) {
 
         case "relaxingActivities":
             categ = "galleries,wineries,festivals,planetarium,aquariums,cabaret";
-            htmlSection = "***************TO BE COMPLETED**************";
+            htmlSection = "#relaxingActivities";
             break;
 
         case "adventureActivities":
             categ = "escapegames,danceclubs,rockclimbing,axethrowing,hot_air_balloons,horsebackriding,hanggliding";
-            htmlSection = "***************TO BE COMPLETED**************";
+            htmlSection = "#adventureActivities";
             break;
     }
 

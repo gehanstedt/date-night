@@ -45,6 +45,8 @@ $(document).ready(function() {
         address = parseAddress(city);
         getResponseWeather(address.city);
         getActivity(address, "restaurant");
+        getActivity(address, "relaxingActivities");
+        getActivity(address, "adventureActivities");
     }
 
     // When enter key pressed

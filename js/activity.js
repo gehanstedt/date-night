@@ -83,7 +83,12 @@ $.ajax({
                 var state = item.location.state;
                 var zipcode = item.location.zip_code;
                 var imageURL = item.image_url;
-                var price = item.price;
+                if (typeof item.price !== 'undefined'){
+                    var price = item.price;
+                } else {
+                    var price = "Unknown";
+                };
+                console.log(price)
                 var rating = item.rating;
                 var review_count = item.review_count;
                 var url = item.url;
@@ -144,7 +149,7 @@ $.ajax({
             // });
         } else {
             // If our results are 0; no businesses were returned by the JSON therefor we display on the page no results were found
-             $('#results').append('<h5>We discovered no results!</h5>');
+             $('#h5Element').append('<h5>We discovered no results!</h5>');
             }
         }
     });

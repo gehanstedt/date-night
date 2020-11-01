@@ -63,6 +63,7 @@ $.ajax({
         $(htmlSection).empty ();
 
         // Grab the results from the API JSON return
+        console.log(data)
         myDebug(data)
         var totalresults = data.total;
         // If our results are greater than 0, continue
@@ -76,6 +77,7 @@ $.ajax({
             for(var i=0; i < 3; i++){
                 //generate random number from 1 - number of businesses
                 var x = Math.floor((Math.random() * data.businesses.length-1) + 1);
+                console.log(x)
                 item = data.businesses[x];
                 var name = item.name;
                 var address = item.location.address1;

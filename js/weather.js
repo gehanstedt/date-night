@@ -17,11 +17,11 @@ function getResponseWeather(cityName){
     error:  function(xhr){
         // alert("An error occured: " + xhr.status + " " + xhr.statusText)
         // citydate = $("<h3>").text(cityName + " City not found");
-        alert (`City ${citydate} not found.  Please check and re-enter`)
+        alert (`City ${cityName} not found.  Please check and re-enter`)
     // $("#weather-today").append(citydate);
     },
     }).then(function(response) {
-        console.log(response)
+        console.log(response)    
         var CoordLon = response.coord.lon;
         var CoordLat = response.coord.lat;
     //   var queryURL2 = "https://api.openweathermap.org/data/2.5/onecall?appid="+ weatherKey+ "&lat=" + CoordLat +"&lon=" + CoordLon;

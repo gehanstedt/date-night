@@ -72,7 +72,7 @@ $.ajax({
             rowElement = $("<div>");
             rowElement.attr ("class", "row");
             $(htmlSection).append (rowElement);
-
+      console.log(totalresults)
             // currently i < 3 this returns 3 objects change it if you want more or less
             for(var i=0; i < 3; i++){
                 //generate random number from 1 - number of businesses

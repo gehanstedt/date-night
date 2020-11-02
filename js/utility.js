@@ -13,12 +13,14 @@ weekday[4] = "Thu";
 weekday[5] = "Fri";
 weekday[6] = "Sat";
 
+//Rich M pull city from localstorage
+city = localStorage.getItem("city")
+
 function myDebug (message) {
     if (debugOn === true) {
         console.log (message);
     }
 }
-
 
 $(document).ready(function() {
 
@@ -38,10 +40,13 @@ $(document).ready(function() {
 
     function beginSearch () {
         var city = $("#enter-city").val().trim();
+        console.log(city)
         // Start over if no city entered
         if (city === "") {
             return;
         }
+        //Rich M add save city to localstorage
+        localStorage.setItem("city", city);
         address = parseAddress(city);
         getResponseWeather(address.city);
         getActivity(address, "restaurant");

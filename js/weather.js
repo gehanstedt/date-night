@@ -3,6 +3,7 @@ var weatherKey = "10bed3fd22a7204ac32c558e968d28f2";
 
 //Function to populate all the forecast data 
 function getResponseWeather(cityName){
+    console.log(address)
         //Section to get forecast
         city=address.city;
         state=address.state;
@@ -20,6 +21,7 @@ function getResponseWeather(cityName){
     // $("#weather-today").append(citydate);
     },
     }).then(function(response) {
+        console.log(response)
         var CoordLon = response.coord.lon;
         var CoordLat = response.coord.lat;
     //   var queryURL2 = "https://api.openweathermap.org/data/2.5/onecall?appid="+ weatherKey+ "&lat=" + CoordLat +"&lon=" + CoordLon;

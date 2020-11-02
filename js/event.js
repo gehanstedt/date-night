@@ -13,7 +13,7 @@ function getEvent (cityObject) {
 
 //Function to populate all the forecast data 
 function getResponseEvent(cityObject){
-    const htmlSection = "#events";
+    var htmlSection = "#events";
     var rowElement;
     var divColumnElement;
     var divIconBlockElement;
@@ -21,27 +21,12 @@ function getResponseEvent(cityObject){
     var imgElement;
     var h5Element;
     var pElement;
-        //Section to get forecast
-/*         city=address.city;
-        state=address.state; */
-/*        let city = "Atlanta";
-        let state = "Ga";
-        */
-/*         let city = "Milwaukee";
-        let state = "Wi"; */
-        const currentNow = parseInt(Date.now() / 1000);
-        myDebug(currentNow);
-        console.log (`State -->${cityObject.state}<--`);
 
-        let queryURL = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/events?location=${cityObject.city}%2c${cityObject.state.trim()}&start_date=${currentNow}`
-/*         let queryURL = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/events?location=${city}%2c%20${state}`; */
-        // var queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}%2c${state}%2c&appid=${weatherKey}`;
-        // var queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${weatherKey}`;
-        // let queryURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/events?location=Atlanta,%20Ga";
-        // let queryURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/events?latitude=33.75&longitude=-84.39";
+    const currentNow = parseInt(Date.now() / 1000);
 
-    // myDebug ("here");
-    console.log(queryURL)
+
+    let queryURL = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/events?location=${cityObject.city}%2c${cityObject.state.trim()}&start_date=${currentNow}`
+
     $.ajax({
         url: queryURL,
         headers: {
@@ -58,7 +43,7 @@ function getResponseEvent(cityObject){
         $(htmlSection).empty ();
 
         if (response.events.length > 0) {
-            // Build div row
+            // Build div row for the 3 events
             rowElement = $("<div>");
             rowElement.attr ("class", "row");
             $(htmlSection).append (rowElement);
@@ -79,39 +64,23 @@ function getResponseEvent(cityObject){
                 eventAddress2 = response.events[i].location.address2;
                 eventAddress3 = response.events[i].location.address3;
 
+                //Parse the Start Date from the response object
                 let eventStartDate = "";
                 let eventStartTime1 = "";
                 if (eventStartTime) {
                     [eventStartDate, timeStart] = eventStartTime.split('T');
                     [eventStartTime1, utcOffsetStart] = timeStart.split('-');
-                    console.log(`Start Date: ${eventStartDate}`);
-                    console.log(`Start Time: ${eventStartTime1}`);
                 }
 
-                console.log(`Start Date: ${eventStartDate}`);
-
-
+                //Parse the Start Date from the response object
                 let eventEndDate = "";
                 let eventEndTime1 = "";
                 if (eventEndTime) {
                     let [eventEndDate, timeEnd] = eventEndTime.split('T');
                     let [eventEndTime1, utcOffsetEnd] = timeEnd.split('-');
-                    console.log(`End Date: ${eventEndDate}`);
-                    console.log(`End Time: ${eventEndTime1}`);
                 }
-                
 
-                console.log(`Name: ${eventName} `);
-                console.log(`Description: ${eventDescription}`);
-                console.log(`SiteURL: ${eventSiteURL}`);
-                console.log(`ImageURL: ${eventImageURL}`);
-                console.log(`Address1: ${eventAddress1} Address2: ${eventAddress2} Address3: ${eventAddress3}`);
-                console.log(`City: ${eventCity} State: ${eventState} Zip: ${eventZip}`);
-                console.log(`Start: ${eventStartTime} End: ${eventEndTime}`);
-                console.log(`Category: ${eventCategory}`);
-                console.log(`Cost: ${eventCost}`)
-                console.log("-----------------------------------------------------")
-
+                //Build the columns with the Name, image, site_url, price/cost, description for the html
                 divColumnElement = $("<div>");
                 divColumnElement.attr ("class", "col s12 m4");
                 rowElement.append (divColumnElement);
@@ -140,8 +109,6 @@ function getResponseEvent(cityObject){
                 pElement.text (`${eventAddress1} ${eventCity}, ${eventState} ${eventZip}`);
                 divIconBlockElement.append (pElement);
 
-
-
                 if (eventCost === null) {
                     eventCost = "(unavailable)";
                 }
@@ -149,8 +116,6 @@ function getResponseEvent(cityObject){
                 pElement.attr ("class", "light eventBullets");
                 pElement.text (`Price: ${eventCost}`);
                 divIconBlockElement.append (pElement);
-
-                console.log (`GH event start date -->${eventStartDate}<--`);
 
                 pElement = $("<p>");
                 pElement.attr ("class", "light eventBullets");
@@ -162,7 +127,24 @@ function getResponseEvent(cityObject){
                 pElement.text (`${eventDescription}`);
                 divIconBlockElement.append (pElement);
             }
+        } else {
+            // Build div row for error
+            rowElement = $("<div>");
+            rowElement.attr ("class", "row");
+            $(htmlSection).append (rowElement);
+            divColumnElement = $("<div>");
+            divColumnElement.attr ("class", "col s12 m4");
+            rowElement.append (divColumnElement);
+
+            divIconBlockElement = $("<div>");
+            divIconBlockElement.attr ("class", "icon-block");
+            divColumnElement.append (divIconBlockElement);
+
+            h5Element = $("<h5>");
+            h5Element.attr ("class", "center");
+            divIconBlockElement.append (h5Element);
+            h5Element.append (`No Events found for ${cityObject.city}`);
+            
         }
-        console.log(response);
     });
 } 

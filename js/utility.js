@@ -14,8 +14,14 @@ weekday[5] = "Fri";
 weekday[6] = "Sat";
 
 //Rich M pull city from localstorage
-city = localStorage.getItem("city")
-
+if (localStorage.getItem("city") === null) {
+    city = "atlanta, ga";
+  } else {
+    city = localStorage.getItem("city");
+  }
+ var b = document.querySelector("#enter-city")
+  b.setAttribute("value", city);
+  
 function myDebug (message) {
     if (debugOn === true) {
         console.log (message);
@@ -40,7 +46,7 @@ $(document).ready(function() {
 
     function beginSearch () {
         var city = $("#enter-city").val().trim();
-        console.log(city)
+        // console.log(city)
         // Start over if no city entered
         if (city === "") {
             return;

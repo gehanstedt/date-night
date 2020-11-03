@@ -3,22 +3,28 @@ var weatherKey = "10bed3fd22a7204ac32c558e968d28f2";
 
 //Function to populate all the forecast data 
 function getResponseWeather(cityName){
-    console.log(address)
+
         //Section to get forecast
         city=address.city;
         state=address.state;
         var queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}%2c${state}%2c&appid=${weatherKey}`;
         // var queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${weatherKey}`;
-
+        console.log(queryURL)
     myDebug ("here");
     $.ajax({
     url: queryURL,
     method: "GET",
     error:  function(xhr){
-        // alert("An error occured: " + xhr.status + " " + xhr.statusText)
-        // citydate = $("<h3>").text(cityName + " City not found");
-        alert (`City ${cityName} not found.  Please check and re-enter`)
-    // $("#weather-today").append(citydate);
+       // alert("An error occured: " + xhr.status + " " + xhr.statusText)
+        //citydate = $("<h3>").text(cityName + " City not found");
+        //alert (`City ${cityName} not found.  Please check and re-enter`)
+        //$("#enter-city").val() = citydate
+        //$("#enter-city").append(citydate);
+        citydate = cityName + " City not found";
+        
+        var b = document.querySelector("#enter-city")
+        b.setAttribute("value", citydate);
+        //location.reload();
     },
     }).then(function(response) {
         console.log(response)    
@@ -30,7 +36,7 @@ function getResponseWeather(cityName){
             url: queryURL2,
             method: "GET",
             error:  function(xhr){
-                // alert("An error occured: " + xhr.status + " " + xhr.statusText)
+                //alert("An error occured: " + xhr.status + " " + xhr.statusText)
                 citydate = $("<h3>").text(cityName + " City not found");
             //Greg H changes
             // Removing this append - this was for the Homework assignment

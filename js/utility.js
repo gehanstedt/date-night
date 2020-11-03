@@ -15,7 +15,7 @@ weekday[6] = "Sat";
 
 //Rich M pull city from localstorage
 if (localStorage.getItem("city") === null) {
-    city = "atlanta, ga";
+    city = "Atlanta, GA";
   } else {
     city = localStorage.getItem("city");
   }

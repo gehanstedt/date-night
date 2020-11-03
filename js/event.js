@@ -133,7 +133,8 @@ function getResponseEvent(cityObject){
             rowElement.attr ("class", "row");
             $(htmlSection).append (rowElement);
             divColumnElement = $("<div>");
-            divColumnElement.attr ("class", "col s12 m4");
+            // Greg H mod - changing from col s12 m4 to col s12 m12
+            divColumnElement.attr ("class", "col s12 m12");
             rowElement.append (divColumnElement);
 
             divIconBlockElement = $("<div>");

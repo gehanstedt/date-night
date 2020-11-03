@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Date Night - GDog and the Coding Ninjas</title>
 
-  <!-- CSS  -->
+  <!-- Materialize CSS -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -13,6 +13,7 @@
 <body>
   <nav class="white" role="navigation">
     <div class="nav-wrapper container">
+      <!-- G Dog Enterprises logo -->
       <img src=".\img\gdog-ninja2.png"  style="height:55px;">
       <ul class="right hide-on-med-and-down">
         <li><a href="#forecast">Forecast</a></li>
@@ -21,14 +22,19 @@
         <li><a href="#adventure">Adventure Activities</a></li>
         <li><a href="#relaxing">Relaxing Activities</a></li>
       </ul>
-
+      <!-- Small navbar for mobile device  -->
       <ul id="nav-mobile" class="sidenav">
-        <li><a href="#">Navbar Link</a></li>
+        <li><a href="#forecast">Forecast</a></li>
+        <li><a href="#restaurants2">Restaurants</a></li>
+        <li><a href="#events2">Events</a></li>
+        <li><a href="#adventure">Adventure Activities</a></li>
+        <li><a href="#relaxing">Relaxing Activities</a></li>
       </ul>
       <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     </div>
   </nav>
 
+  <!-- Parallax Container for the text input and date background image -->
   <div id="index-banner" class="parallax-container">
     <div class="section no-pad-bot">
       <div class="container">
@@ -36,6 +42,7 @@
         <h1 class="header center">Date Night</h1>
         <div class="row center">
           <div class="input-field col s12">
+            <!-- Default to atlanta, or the last search history -->
             <input value="Atlanta, GA" id="enter-city" type="text" class="validate" style="color: white; font-size: xx-large;">
             <label for="location" style="font-size:x-large; font-weight: bold;" >City, State</label>
           </div>
@@ -44,159 +51,58 @@
           <a id="search-button" class="btn-large waves-effect waves-light indigo darken-4">Search</a>
         </div>
         <br><br>
-
       </div>
     </div>
+    <!-- Date night Image displayed under the text input  -->
     <div class="parallax"><img src="img/background1.jpg" alt="Unsplashed background img 1"></div>
   </div>
 
-
+  <!-- Forecast Section -->
   <div class="container"> 
     <h2 class="center" id="forecast"> Forecast</h2> 
     <div class="row forecast-results"></div>
   </div>
-  
+
+  <!-- Restauraunts image in parallax container  -->  
   <div class="parallax-container valign-wrapper">
-    <div class="section no-pad-bot">
-      <div class="container">
-        <div class="row center">
-          
-        </div>
-      </div>
-    </div>
     <div class="parallax"><img src="img/background3.jpg" alt="Unsplashed background img 3"></div>
   </div>
 
   <div class="container">
     <div class="section">
       <h2 class="center" id="restaurants2">Restaurants</h2>
+      <br>
       <div class="col s12 m4" id="restaurants">
-              <!--   Icon Section   -->
-      <div class="row">
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">flash_on</i></h2>
-            <h5 class="center">Speeds up development</h5>
-
-            <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
-          </div>
-        </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">group</i></h2>
-            <h5 class="center">User Experience Focused</h5>
-
-            <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>
-          </div>
-        </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">settings</i></h2>
-            <h5 class="center">Easy to work with</h5>
-
-            <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
-          </div>
-        </div>
-      </div>
+          <!--   Restauraunt Recommendations created here  -->
       </div>
     </div>
   </div>
 
-
+  <!-- Events image in parallax container  -->
   <div class="parallax-container valign-wrapper">
-    <div class="section no-pad-bot">
-      <div class="container">
-        <div class="row center">
-          
-        </div>
-      </div>
-    </div>
     <div class="parallax"><img src="img/background2.jpg" alt="Unsplashed background img 2"></div>
   </div>
 
   <div class="container">
     <div class="section">
       <h2 class="center" id="events2">Events</h2>
+      <br>
       <div class="col s12 m4" id="events">
-              <!--   Icon Section   -->
-      <div class="row">
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">flash_on</i></h2>
-            <h5 class="center">Speeds up development</h5>
-
-            <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
-          </div>
-        </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">group</i></h2>
-            <h5 class="center">User Experience Focused</h5>
-
-            <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>
-          </div>
-        </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">settings</i></h2>
-            <h5 class="center">Easy to work with</h5>
-
-            <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
-          </div>
-        </div>
-      </div>
+          <!--   Event Recommendations created here  -->
       </div>
     </div>
   </div>
 
   <div class="parallax-container valign-wrapper">
-    <div class="section no-pad-bot">
-      <div class="container">
-        <div class="row center">
-          
-        </div>
-      </div>
-    </div>
     <div class="parallax"><img src="img/background4.jpg" alt="Unsplashed background img 2"></div>
   </div>
 
   <div class="container">
     <div class="section">
       <h2 class="center" id="adventure">Adventure Activities</h2>
+      <br>
       <div class="col s12 m4" id="adventureActivities">
-              <!--   Icon Section   -->
-      <div class="row">
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">flash_on</i></h2>
-            <h5 class="center">Speeds up development</h5>
-
-            <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
-          </div>
-        </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">group</i></h2>
-            <h5 class="center">User Experience Focused</h5>
-
-            <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>
-          </div>
-        </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">settings</i></h2>
-            <h5 class="center">Easy to work with</h5>
-
-            <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
-          </div>
-        </div>
-      </div>
+        <!--  Adventure Activities Recommendations created here  -->
       </div>
     </div>
   </div>
@@ -204,59 +110,20 @@
   <div class="container">
     <div class="section">
       <h2 class="center" id="relaxing">Relaxing Activities</h2>
+      <br>
       <div class="col s12 m4" id="relaxingActivities">
-              <!--   Icon Section   -->
-      <div class="row">
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">flash_on</i></h2>
-            <h5 class="center">Speeds up development</h5>
-
-            <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
-          </div>
-        </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">group</i></h2>
-            <h5 class="center">User Experience Focused</h5>
-
-            <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>
-          </div>
-        </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center brown-text"><i class="material-icons">settings</i></h2>
-            <h5 class="center">Easy to work with</h5>
-
-            <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
-          </div>
-        </div>
-      </div>
+        <!--  Relaxing Activities Recommendations created here  -->
       </div>
     </div>
   </div>
 
-
-  <div class="container">
-    <div class="section">
-
-
-
-    </div>
-  </div>
-
-
-
+  <!-- Footer section explaining the project technology, and contributors -->
   <footer class="page-footer indigo darken-4">
     <div class="container">
       <div class="row">
         <div class="col l6 s12">
           <h5 class="white-text">Project Information</h5>
-          <p class="grey-text text-lighten-4"> We are a team of students working on this project like it's our full time job.</p>
-
-
+          <p class="grey-text text-lighten-4"> We decided to make a website to help people make date night plans. Its perfect for deciding what to do, based on the weather forecast.</p>
         </div>
         <div class="col l3 s12">
           <h5 class="white-text">Contributors</h5>
@@ -283,11 +150,10 @@
     </div>
     <div class="footer-copyright">
       <div class="container">
-      
+        <p>Copyright G Dog Enterprises @ 2020</p>
       </div>
     </div>
   </footer>
-
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>

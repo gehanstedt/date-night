@@ -1,3 +1,5 @@
+
+
 $(".forecast-results").empty();
 //console.log(tempvariable);
 //$(".forecast-results").append(`<p>Temperature: ${tempvariable}</p>`)

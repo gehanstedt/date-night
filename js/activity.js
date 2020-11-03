@@ -19,28 +19,36 @@ function getActivity (cityObject, category) {
         case "restaurant":
             categ = "restaurant";
             htmlSection = "#restaurants";
+            businessText = "Restaurants";
             break;
 
         case "relaxingActivities":
             categ = "galleries,wineries,festivals,planetarium,aquariums,cabaret";
             htmlSection = "#relaxingActivities";
+            businessText = "Relaxing Activities";
             break;
 
         case "adventureActivities":
             categ = "escapegames,danceclubs,rockclimbing,axethrowing,hot_air_balloons,horsebackriding,hanggliding";
             htmlSection = "#adventureActivities";
+            businessText = "Adventure Activities";
             break;
     }
 
     cityst = `${cityObject.city}%2c${cityObject.state}`;
+    cityText = cityObject.city;
+/*     [businessText1, businessText2] = category.split(/(?=[A-Z])/);
+    businessText = businessText1.substr(0,1).toUpperCase()+businessText1.substr(1);
+    businessText1 = businessText2 || null;
+    console.log(businessText, businessText1, businessText2); */
 
     myurl = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?location=${cityst}&categories=${categ}`;
 
-    getCateg (myurl, htmlSection);
+    getCateg (myurl, htmlSection, businessText);
 }
 
 // get items in the requested category 
-function getCateg(myurl, htmlSection){
+function getCateg(myurl, htmlSection, businessText){
     var rowElement;
     var divColumnElement;
     var divIconBlockElement;
@@ -150,7 +158,23 @@ $.ajax({
             // });
         } else {
             // If our results are 0; no businesses were returned by the JSON therefor we display on the page no results were found
-             $('#h5Element').append('<h5>We discovered no results!</h5>');
+            //  $('#h5Element').append('<h5>We discovered no results!</h5>');
+                // Build div row for error
+                rowElement = $("<div>");
+                rowElement.attr ("class", "row");
+                $(htmlSection).append (rowElement);
+                divColumnElement = $("<div>");
+                divColumnElement.attr ("class", "col s12 m4");
+                rowElement.append (divColumnElement);
+    
+                divIconBlockElement = $("<div>");
+                divIconBlockElement.attr ("class", "icon-block");
+                divColumnElement.append (divIconBlockElement);
+    
+                h5Element = $("<h5>");
+                h5Element.attr ("class", "center");
+                divIconBlockElement.append (h5Element);
+                h5Element.append (`No ${businessText} found for ${cityText}`);
             }
         }
     });

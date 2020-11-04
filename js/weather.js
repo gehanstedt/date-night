@@ -20,10 +20,10 @@ function getResponseWeather(cityName){
         //alert (`City ${cityName} not found.  Please check and re-enter`)
         //$("#enter-city").val() = citydate
         //$("#enter-city").append(citydate);
-        citydate = cityName + " City not found";
+        var cityDate = cityName + " - City not found";
         
-        var b = document.querySelector("#enter-city")
-        b.setAttribute("value", citydate);
+        $("#enter-city").val (cityDate);
+
         //location.reload();
     },
     }).then(function(response) {

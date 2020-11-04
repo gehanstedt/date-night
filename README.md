@@ -31,8 +31,8 @@ A user enters a US location and is provided with a summary of weather, restauran
 * Arrays
 * Global and local variables
 
-# Screenshot
-![main-screen](https://github.com/gehanstedt/date-night/blob/main/img/main-screenshot.png)
+# Screenshots
+![mainscreen](https://github.com/gehanstedt/date-night/blob/main/img/main-screenshot2.png)
 ![restaurants](https://github.com/gehanstedt/date-night/blob/main/img/restaurants-screenshot.png)
 ![events](https://github.com/gehanstedt/date-night/blob/main/img/events-screenshot.png)
 ![activities](https://github.com/gehanstedt/date-night/blob/main/img/activities-screenshot.png)

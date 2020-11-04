@@ -4,7 +4,7 @@ cityName="Atlanta,Ga"
 
 function getEvent (cityObject) {
     var categ;
-    var myurl;
+    var queryURL;
     var cityst;
 
     getResponseEvent (cityObject);
@@ -24,8 +24,9 @@ function getResponseEvent(cityObject){
 
     const currentNow = parseInt(Date.now() / 1000);
 
+    cityst = `${cityObject.city}%2c${cityObject.state}`;
 
-    let queryURL = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/events?location=${cityObject.city}%2c${cityObject.state.trim()}&start_date=${currentNow}`
+    queryURL = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/events?location=${cityst}&start_date=${currentNow}`
 
     $.ajax({
         url: queryURL,
@@ -34,10 +35,7 @@ function getResponseEvent(cityObject){
         },
     method: 'GET',
     dataType: 'json',
-    error:  function(xhr){
-        citydate = $("<h3>").text(cityObject.city + "City not found for Events");
-        alert("Error");
-    },
+
     }).then(function(response) {
         // Empty out the Events section
         $(htmlSection).empty ();

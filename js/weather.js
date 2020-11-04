@@ -8,54 +8,39 @@ function getResponseWeather(cityName){
         city=address.city;
         state=address.state;
         var queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}%2c${state}%2c&appid=${weatherKey}`;
-        // var queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${weatherKey}`;
-        console.log(queryURL)
+
     myDebug ("here");
     $.ajax({
     url: queryURL,
     method: "GET",
     error:  function(xhr){
-       // alert("An error occured: " + xhr.status + " " + xhr.statusText)
-        //citydate = $("<h3>").text(cityName + " City not found");
-        //alert (`City ${cityName} not found.  Please check and re-enter`)
-        //$("#enter-city").val() = citydate
-        //$("#enter-city").append(citydate);
+
         var cityDate = cityName + " - City not found";
         
         $("#enter-city").val (cityDate);
 
-        //location.reload();
     },
     }).then(function(response) {
-        console.log(response)    
+ 
+        //Get longitude and latitude for query
         var CoordLon = response.coord.lon;
         var CoordLat = response.coord.lat;
-    //   var queryURL2 = "https://api.openweathermap.org/data/2.5/onecall?appid="+ weatherKey+ "&lat=" + CoordLat +"&lon=" + CoordLon;
         var queryURL2 = `https://api.openweathermap.org/data/2.5/onecall?appid=${weatherKey}&lat=${CoordLat}&lon=${CoordLon}`;
+
             $.ajax({
             url: queryURL2,
             method: "GET",
             error:  function(xhr){
-                //alert("An error occured: " + xhr.status + " " + xhr.statusText)
                 citydate = $("<h3>").text(cityName + " City not found");
-            //Greg H changes
-            // Removing this append - this was for the Homework assignment
-            // $("#weather-today").append(citydate);
             },
         }).then(function(respForecast) { 
-            console.log(respForecast)
-            // Greg H changes
-            // Old clear out from Homework
-            //  $("#boxes").empty();
-            // Clear out below div forecast-results
             $(".forecast-results").empty ();
 
+            //Display the weather forecast for the next 7 days
             for(var i=0, j=0; j<=6; i=i+1){
                 var read_date = respForecast.daily[i].dt;
                 if(respForecast.daily[i].dt != respForecast.daily[i+1].dt){
                     var forecastDiv = $("<div>");
-                    // Greg H change
-                    // Adding addition forecastCardDiv and forecastCardDivImage
                     var forecastCardDiv = $("<div>");
                     forecastCardDiv.attr ("class", "card");
                     var forecastCardImageDiv = $("<div>");
@@ -63,9 +48,6 @@ function getResponseWeather(cityName){
                     var forecastCardContentDiv = $("<div>");
                     forecastCardContentDiv.attr ("class", "card-content");
 
-                    // Greg H change
-                    // Replacing homework class call with what front-end team needs
-                    //forecastDiv.attr("class","col-3 m-2 bg-primary")
                     forecastDiv.attr("class","col s12 m3")
                     var d = new Date(0);
                     d.setUTCSeconds(read_date);
@@ -74,11 +56,6 @@ function getResponseWeather(cityName){
                     var day = date.getDate();  
                     var dayOfWeek = date.getDay();               
 
-                    // Greg H changes
-                    // var outday = (month<10 ? '0' : '') + month + '/' +
-                    // (day<10 ? '0' : '') + day + '/' +
-                    // date.getFullYear() + ' ' + weekday[dayOfWeek];
-
                     var outday = `${weekday[dayOfWeek]} ${(month<10 ? '0' : '') + month}/${(day<10 ? '0' : '') + day}`;
 
                     var forecasth4 = $("<h6>").text(outday);
@@ -86,8 +63,7 @@ function getResponseWeather(cityName){
                     var imgtag = $("<img>");
                     var skyconditions = respForecast.daily[i].weather[0].main;
 
-                    // GregH change
-                    // Changing images to local images
+                    //Determine which image icon will be used
                     if(skyconditions==="Clouds"){
                         imgtag.attr("src", "./img/cloudy.png")
                     } else if(skyconditions==="Clear"){
@@ -98,6 +74,7 @@ function getResponseWeather(cityName){
                         imgtag.attr("src", "./img/snow.png")
                     }
 
+                    //Convert Kelvin to Faranheit and display - Display other information
                     var ptempK = respForecast.daily[i].temp.day;
                     var convtemp = parseInt((ptempK)* 9/5 - 459);
                     var tempP = $("<p>").text("High: "+ convtemp + " °F");
@@ -105,10 +82,8 @@ function getResponseWeather(cityName){
                     var convtemp = parseInt((ptempeveK)* 9/5 - 459);
                     var tempeveP = $("<p>").text("Evening: "+ convtemp + " °F");
                     var humidityP = $("<p>").text("Humidity: "+ respForecast.daily[i].humidity + " %");
-
-                    // Greg H change
-                    // Modify appends for Date Night
                     
+                    //Display collected information through forecastDiv
                     forecastDiv.append (forecastCardDiv);
                     forecastCardDiv.append (forecastCardImageDiv);
                     forecastCardDiv.append (forecastCardContentDiv);
@@ -120,10 +95,6 @@ function getResponseWeather(cityName){
 
                     myDebug ("Below appends");
 
-                    // Greg H change
-                    // Commenting out homework append
-                    // $("#boxes").append(forecastDiv);
-                    // Append main box to forecast-results
                     $(".forecast-results").append(forecastDiv);
                     j++;
                 }

@@ -135,7 +135,7 @@ $.ajax({
 
                 pElement = $("<p>");
                 pElement.attr ("class", "light restaurantBullets");
-                pElement.text (`No.Reviews: ${review_count}`);
+                pElement.text (`No. Reviews: ${review_count}`);
                 divIconBlockElement.append (pElement);
             }; 
 

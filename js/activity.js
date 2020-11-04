@@ -1,15 +1,5 @@
-//create categ which will hold different categories to search on yelp
-//var categ = "restaurant"
-// var categ = "galleries,wineries,festivals,planetarium,aquariums,cabaret";
-// var categ = "escapegames,danceclubs,rockclimbing,axethrowing,hot_air_balloons,horsebackriding,hanggliding";
-
-//cityst = "atlanta,ga"
-//  var myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?location=Atlanta,categories=restaurant";
-//  var myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/events?location=30041";
-// var myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?location=atlanta&categories=galleries,wineries";
-//var myurl = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?location=${cityst}&categories=${categ}`;
-//console.log(myurl)
-
+// Javascript code to find restraurants and activies for the city.
+//Initialize variables
 function getActivity (cityObject, category) {
     var categ;
     var myurl;
@@ -37,10 +27,6 @@ function getActivity (cityObject, category) {
 
     cityst = `${cityObject.city}%2c${cityObject.state}`;
     cityText = cityObject.city;
-/*     [businessText1, businessText2] = category.split(/(?=[A-Z])/);
-    businessText = businessText1.substr(0,1).toUpperCase()+businessText1.substr(1);
-    businessText1 = businessText2 || null;
-    console.log(businessText, businessText1, businessText2); */
 
     myurl = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?location=${cityst}&categories=${categ}`;
 
@@ -66,26 +52,26 @@ $.ajax({
     method: 'GET',
     dataType: 'json',
     success: function(data){
-        // Empty out the 
+        // Empty out the section based on the id
         myDebug (`HTML section: ${htmlSection}`);
         $(htmlSection).empty ();
 
         // Grab the results from the API JSON return
-        console.log(data)
         myDebug(data)
         var totalresults = data.total;
+
         // If our results are greater than 0, continue
         if (totalresults > 0){
             // Build div row
             rowElement = $("<div>");
             rowElement.attr ("class", "row");
             $(htmlSection).append (rowElement);
-      console.log(totalresults)
+
             // currently i < 3 this returns 3 objects change it if you want more or less
             for(var i=0; i < 3; i++){
+
                 //generate random number from 1 - number of businesses
                 var x = Math.floor((Math.random() * data.businesses.length-1) + 1);
-                console.log(x)
                 item = data.businesses[x];
                 var name = item.name;
                 var address = item.location.address1;
@@ -151,20 +137,17 @@ $.ajax({
                 pElement.attr ("class", "light restaurantBullets");
                 pElement.text (`No.Reviews: ${review_count}`);
                 divIconBlockElement.append (pElement);
-
-                // Append our result into our page
-                // $('#results').append('<div id="' + id + '" style="margin-top:50px;margin-bottom:50px;"><img src="' + image + '" style="width:200px;height:150px;"><br>We found <b>' + name + '</b> (' + alias + ')<br>Business ID: ' + id + '<br> Located at: ' + address + ' ' + city + ', ' + state + ' ' + zipcode + '<br>The phone number for this business is: ' + phone + '<br>This business has a rating of ' + rating + ' with ' + reviewcount + ' reviews.</div>');
             }; 
-            // });
+
         } else {
             // If our results are 0; no businesses were returned by the JSON therefor we display on the page no results were found
-            //  $('#h5Element').append('<h5>We discovered no results!</h5>');
+
                 // Build div row for error
                 rowElement = $("<div>");
                 rowElement.attr ("class", "row");
                 $(htmlSection).append (rowElement);
                 divColumnElement = $("<div>");
-                // Greg H mod - changing from col s12 m4 to col s12 m12
+
                 divColumnElement.attr ("class", "col s12 m12");
                 rowElement.append (divColumnElement);
     

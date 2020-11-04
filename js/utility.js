@@ -54,6 +54,7 @@ $(document).ready(function() {
         //Rich M add save city to localstorage
         localStorage.setItem("city", city);
         address = parseAddress(city);
+        showLoading ();
         getResponseWeather(address.city);
         getActivity(address, "restaurant");
         getActivity(address, "relaxingActivities");
@@ -75,4 +76,40 @@ $(document).ready(function() {
         event.preventDefault();
         beginSearch ();
     });
+
+    function showLoading () {
+        var counter;
+        var rowElement;
+        var divColumnElement;
+        var divIconBlockElement;
+        var h5Element;
+
+        var pageSections = ["#restaurants",
+                            "#relaxingActivities",
+                            "#adventureActivities",
+                            "#events"];
+
+        for (counter = 0; counter < pageSections.length; counter ++) {
+            // For each section, we will empty and put "Loading..." in for each
+            $(pageSections[counter]).empty ();
+
+            // Build div row for Loading...
+            rowElement = $("<div>");
+            rowElement.attr ("class", "row");
+            $(pageSections[counter]).append (rowElement);
+            divColumnElement = $("<div>");
+
+            divColumnElement.attr ("class", "col s12 m12");
+            rowElement.append (divColumnElement);
+
+            divIconBlockElement = $("<div>");
+            divIconBlockElement.attr ("class", "icon-block");
+            divColumnElement.append (divIconBlockElement);
+
+            h5Element = $("<h5>");
+            h5Element.attr ("class", "center");
+            divIconBlockElement.append (h5Element);
+            h5Element.append (`Loading...`);
+        }
+    }
 });
